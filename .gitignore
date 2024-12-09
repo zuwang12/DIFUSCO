@@ -1,2 +1,15 @@
 scripts
 .idea
+
+models/
+difusco/utils/cython_merge/
+logs/
+data/tsp
+ckpt/
+wandb/
+
+*.pyc
+*.csv
+*.ipynb
+*.pkl
+*.gz
