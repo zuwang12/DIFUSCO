@@ -13,3 +13,4 @@ wandb/
 *.ipynb
 *.pkl
 *.gz
+*.txt
