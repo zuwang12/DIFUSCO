@@ -36,7 +36,7 @@ def arg_parser():
     parser.add_argument('--weight_decay', type=float, default=0.0001)
     parser.add_argument('--lr_scheduler', type=str, default="cosine-decay")
 
-    parser.add_argument('--num_workers', type=int, default=16)
+    parser.add_argument('--num_workers', type=int, default=8)
     parser.add_argument('--fp16', action='store_true')
     parser.add_argument('--use_activation_checkpoint', action='store_true')
 
@@ -68,12 +68,21 @@ def arg_parser():
     parser.add_argument('--do_valid_only', action='store_true')
     parser.add_argument('--use_ddp', default=True)
     parser.add_argument('--constraint_type', default='basic')
-    parser.add_argument('--f_name', default='test')
+    parser.add_argument('--f_name', default='test_for_tsp')
 
     args = parser.parse_args()
     return args
 
+def set_seed(seed):
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+
 def main(args):
+    
+    seed = 2025
+    set_seed(seed)
+    
     epochs = args.num_epochs
     project_name = args.project_name
 
