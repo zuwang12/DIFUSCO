@@ -85,7 +85,7 @@ class TSPModel(COMetaModel):
         # Compute loss
         loss_func = nn.CrossEntropyLoss()
         loss = loss_func(x0_pred, adj_matrix.long())
-        self.log("train/loss", loss)
+        # self.log("train/loss", loss)
         return loss
 
     def gaussian_training_step(self, batch, batch_idx):
@@ -112,7 +112,7 @@ class TSPModel(COMetaModel):
 
         # Compute loss
         loss = F.mse_loss(epsilon_pred, epsilon.float())
-        self.log("train/loss", loss)
+        # self.log("train/loss", loss)
         return loss
 
     def training_step(self, batch, batch_idx):
@@ -256,9 +256,9 @@ class TSPModel(COMetaModel):
             f"{split}/2opt_iterations": ns,
             f"{split}/merge_iterations": merge_iterations,
         }
-        for k, v in metrics.items():
-            self.log(k, v, on_epoch=True, sync_dist=True)
-        self.log(f"{split}/solved_cost", best_solved_cost, prog_bar=True, on_epoch=True, sync_dist=True)
+        # for k, v in metrics.items():
+        #     self.log(k, v, on_epoch=True, sync_dist=True)
+        # self.log(f"{split}/solved_cost", best_solved_cost, prog_bar=True, on_epoch=True, sync_dist=True)
         return metrics
 
     def run_save_numpy_heatmap(self, adj_mat, np_points, real_batch_idx, split):
